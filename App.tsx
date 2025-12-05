@@ -43,25 +43,25 @@ const MagicHatIcon = () => (
     >
       {/* Hat Base - Pink/Purple Gradient */}
       <path d="M100 20 C60 20 40 80 30 110 C20 140 10 150 10 160 C10 170 30 180 100 180 C170 180 190 170 190 160 C190 150 180 140 170 110 C160 80 140 20 100 20Z" fill="url(#hatGradient)" />
-      
+
       {/* Hat Fold (Sorting Hat style) */}
-      <path d="M60 90 Q100 120 140 90" stroke="#C084FC" strokeWidth="4" fill="none" opacity="0.5" strokeLinecap="round"/>
-      
+      <path d="M60 90 Q100 120 140 90" stroke="#C084FC" strokeWidth="4" fill="none" opacity="0.5" strokeLinecap="round" />
+
       {/* Brim */}
       <path d="M10 160 Q100 195 190 160" stroke="#E879F9" strokeWidth="8" fill="none" strokeLinecap="round" />
       <path d="M10 160 Q100 195 190 160" stroke="#FAE8FF" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.6" />
 
       {/* Ribbon */}
       <path d="M30 145 Q100 165 170 145" stroke="#A855F7" strokeWidth="12" fill="none" />
-      
+
       {/* Star Buckle */}
       <path d="M100 155 L105 145 L115 145 L108 138 L110 128 L100 135 L90 128 L92 138 L85 145 L95 145 Z" fill="#FDE047" stroke="#F59E0B" strokeWidth="2" />
-      
+
       {/* Sparkles around hat */}
       <circle cx="50" cy="60" r="3" fill="#FDE047" className="animate-pulse" />
       <circle cx="150" cy="50" r="4" fill="#fff" className="animate-pulse" style={{ animationDelay: '0.5s' }} />
     </motion.g>
-    
+
     <defs>
       <linearGradient id="hatGradient" x1="100" y1="20" x2="100" y2="180" gradientUnits="userSpaceOnUse">
         <stop stopColor="#D8B4FE" /> {/* Light Purple */}
@@ -121,7 +121,7 @@ const App: React.FC = () => {
     });
 
     const result = RESULTS.find(r => totalScore >= r.minScore && totalScore <= r.maxScore);
-    const safeResult = result || RESULTS[1]; 
+    const safeResult = result || RESULTS[1];
     setFinalResult(safeResult);
     await submitQuizData(completedAnswers, safeResult);
     setScreen('result');
@@ -131,9 +131,14 @@ const App: React.FC = () => {
     <div className="min-h-screen w-full flex items-center justify-center p-4 relative text-slate-700 overflow-hidden">
       <MagicBackground />
 
+      {/* Logo Area - Global */}
+      <div className="absolute top-6 left-6 z-20 pointer-events-none">
+        <img src="/logo.png" alt="Dai Dai Logo" className="w-16 h-16 object-contain drop-shadow-md hover:scale-105 transition-transform pointer-events-auto" />
+      </div>
+
       <div className="w-full max-w-lg z-10">
         <AnimatePresence mode="wait">
-          
+
           {/* ================= START SCREEN ================= */}
           {screen === 'start' && (
             <motion.div
@@ -145,30 +150,30 @@ const App: React.FC = () => {
             >
               {/* Top Decorations (Filling empty space) - Moved INSIDE visible area */}
               <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-100/50 to-transparent pointer-events-none" />
-              
+
               {/* Decorative elements adjusted to be visible */}
               <div className="absolute top-6 left-6 text-3xl animate-bounce opacity-80" style={{ animationDuration: '3s' }}>☁️</div>
               <div className="absolute top-8 right-6 text-2xl animate-bounce opacity-80" style={{ animationDuration: '4s' }}>☁️</div>
-              
+
               <div className="absolute top-16 left-12 text-yellow-300 text-xl animate-pulse">✨</div>
               <div className="absolute top-12 right-16 text-purple-300 text-lg">✦</div>
 
               <div className="relative z-10 pt-4">
                 {/* Custom Magic Hat SVG - Smaller Size */}
                 <MagicHatIcon />
-                
+
                 <h1 className="text-3xl font-extrabold text-slate-800 mb-2 tracking-wide">
                   心靈風格測驗
                 </h1>
                 <h2 className="text-xl text-purple-500 font-bold mb-6 flex items-center justify-center gap-2">
                   <span className="text-sm">✦</span> 你是哪一種「時間魔法師」？ <span className="text-sm">✦</span>
                 </h2>
-                
+
                 <div className="text-gray-600 mb-8 leading-loose text-sm font-medium">
                   <p className="text-lg text-purple-900 font-bold mb-2">親愛的 Dai Dai ✨</p>
                   <p>在妳忙碌的生活中，我們來玩一個小測驗！</p>
                   <p className="mt-2 text-gray-500">
-                    憑直覺選擇最符合妳心境的選項，<br/>
+                    憑直覺選擇最符合妳心境的選項，<br />
                     測出妳擁有的魔法能力！
                   </p>
                 </div>
@@ -203,13 +208,13 @@ const App: React.FC = () => {
               {/* Progress Bar with Title */}
               <div className="mb-6">
                 <div className="flex justify-between items-end mb-2 px-1">
-                   <span className="text-xs font-bold text-purple-400 tracking-wider">🔮 魔法進度</span>
-                   <span className="text-xs font-bold text-purple-300">
+                  <span className="text-xs font-bold text-purple-400 tracking-wider">🔮 魔法進度</span>
+                  <span className="text-xs font-bold text-purple-300">
                     {currentQIndex + 1} / {totalQuestions}
                   </span>
                 </div>
                 <div className="w-full h-4 bg-purple-50 rounded-full overflow-hidden shadow-inner border border-purple-100">
-                  <motion.div 
+                  <motion.div
                     className="h-full bg-gradient-to-r from-purple-300 to-pink-300 relative"
                     initial={{ width: 0 }}
                     animate={{ width: `${((currentQIndex + 1) / totalQuestions) * 100}%` }}
@@ -222,17 +227,17 @@ const App: React.FC = () => {
               {/* Question Card */}
               <div className="flex-1 flex flex-col">
                 <div className="text-center mb-6">
-                   <motion.div
-                     key={currentQuestion.id}
-                     initial={{ scale: 0.5, opacity: 0, rotate: -10 }}
-                     animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                     transition={{ type: "spring", stiffness: 200 }}
-                     className="text-6xl inline-block p-6 bg-gradient-to-br from-white to-purple-50 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.05)] mb-2 border border-white"
-                   >
-                     {QUESTION_ICONS[currentQuestion.id] || "✨"}
-                   </motion.div>
+                  <motion.div
+                    key={currentQuestion.id}
+                    initial={{ scale: 0.5, opacity: 0, rotate: -10 }}
+                    animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                    className="text-6xl inline-block p-6 bg-gradient-to-br from-white to-purple-50 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.05)] mb-2 border border-white"
+                  >
+                    {QUESTION_ICONS[currentQuestion.id] || "✨"}
+                  </motion.div>
                 </div>
-                
+
                 <h2 className="text-xl font-bold text-slate-800 text-center mb-8 px-2 leading-relaxed drop-shadow-sm">
                   {currentQuestion.title}
                 </h2>
@@ -280,51 +285,51 @@ const App: React.FC = () => {
             >
               {/* Tech-Magic Array (SVG) */}
               <div className="absolute inset-0 w-full h-full pointer-events-none">
-                 <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_15px_rgba(192,132,252,0.3)]">
-                    <defs>
-                      <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#c084fc" />
-                        <stop offset="100%" stopColor="#818cf8" />
-                      </linearGradient>
-                    </defs>
+                <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_15px_rgba(192,132,252,0.3)]">
+                  <defs>
+                    <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#c084fc" />
+                      <stop offset="100%" stopColor="#818cf8" />
+                    </linearGradient>
+                  </defs>
 
-                    {/* Outer Geometric Ring - Rotating Slow */}
-                    <motion.g
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                      style={{ originX: "100px", originY: "100px" }}
-                    >
-                      <circle cx="100" cy="100" r="90" fill="none" stroke="#e9d5ff" strokeWidth="1" opacity="0.5" />
-                      {/* Ticks on outer ring */}
-                      {[0, 90, 180, 270].map(deg => (
-                        <rect key={deg} x="98" y="5" width="4" height="8" fill="#c084fc" transform={`rotate(${deg} 100 100)`} />
-                      ))}
-                    </motion.g>
+                  {/* Outer Geometric Ring - Rotating Slow */}
+                  <motion.g
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    style={{ originX: "100px", originY: "100px" }}
+                  >
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="#e9d5ff" strokeWidth="1" opacity="0.5" />
+                    {/* Ticks on outer ring */}
+                    {[0, 90, 180, 270].map(deg => (
+                      <rect key={deg} x="98" y="5" width="4" height="8" fill="#c084fc" transform={`rotate(${deg} 100 100)`} />
+                    ))}
+                  </motion.g>
 
-                    {/* Middle Tech Arc - Rotating Fast Counter-Clockwise */}
-                    <motion.path
-                      d="M100 25 A75 75 0 0 1 175 100 M100 175 A75 75 0 0 1 25 100"
-                      fill="none"
-                      stroke="url(#techGradient)"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      animate={{ rotate: -360 }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      style={{ originX: "100px", originY: "100px" }}
-                    />
+                  {/* Middle Tech Arc - Rotating Fast Counter-Clockwise */}
+                  <motion.path
+                    d="M100 25 A75 75 0 0 1 175 100 M100 175 A75 75 0 0 1 25 100"
+                    fill="none"
+                    stroke="url(#techGradient)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    style={{ originX: "100px", originY: "100px" }}
+                  />
 
-                    {/* Inner Dashed Ring - Rotating Medium */}
-                    <motion.circle 
-                      cx="100" cy="100" r="55" 
-                      fill="none" 
-                      stroke="#fcd34d" 
-                      strokeWidth="1.5"
-                      strokeDasharray="2 6"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                      style={{ originX: "100px", originY: "100px" }}
-                    />
-                 </svg>
+                  {/* Inner Dashed Ring - Rotating Medium */}
+                  <motion.circle
+                    cx="100" cy="100" r="55"
+                    fill="none"
+                    stroke="#fcd34d"
+                    strokeWidth="1.5"
+                    strokeDasharray="2 6"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                    style={{ originX: "100px", originY: "100px" }}
+                  />
+                </svg>
               </div>
 
               {/* Rising Stardust Particles (Replacing Bubbles) */}
@@ -354,19 +359,19 @@ const App: React.FC = () => {
 
               {/* Center Crystal Ball */}
               <div className="z-10 relative bg-white/40 backdrop-blur-md p-6 rounded-full shadow-[0_0_40px_rgba(168,85,247,0.4)] border border-white/50">
-                  <motion.div 
-                    className="text-6xl mb-0 block filter drop-shadow-md"
-                    animate={{ 
-                      scale: [1, 1.05, 1], 
-                      filter: ["drop-shadow(0 0 5px rgba(168,85,247,0.5))", "drop-shadow(0 0 15px rgba(168,85,247,0.8))", "drop-shadow(0 0 5px rgba(168,85,247,0.5))"] 
-                    }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    🔮
-                  </motion.div>
+                <motion.div
+                  className="text-6xl mb-0 block filter drop-shadow-md"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    filter: ["drop-shadow(0 0 5px rgba(168,85,247,0.5))", "drop-shadow(0 0 15px rgba(168,85,247,0.8))", "drop-shadow(0 0 5px rgba(168,85,247,0.5))"]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  🔮
+                </motion.div>
               </div>
-              
-              <motion.div 
+
+              <motion.div
                 className="mt-8 z-10"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -376,9 +381,9 @@ const App: React.FC = () => {
                   正在解析魔法能量
                 </h2>
                 <div className="flex justify-center gap-1">
-                  <motion.div animate={{ opacity: [0,1,0] }} transition={{duration: 1.5, repeat: Infinity, delay: 0}} className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
-                  <motion.div animate={{ opacity: [0,1,0] }} transition={{duration: 1.5, repeat: Infinity, delay: 0.3}} className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
-                  <motion.div animate={{ opacity: [0,1,0] }} transition={{duration: 1.5, repeat: Infinity, delay: 0.6}} className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
+                  <motion.div animate={{ opacity: [0, 1, 0] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0 }} className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
+                  <motion.div animate={{ opacity: [0, 1, 0] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }} className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
+                  <motion.div animate={{ opacity: [0, 1, 0] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.6 }} className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
                 </div>
               </motion.div>
             </motion.div>
@@ -399,29 +404,29 @@ const App: React.FC = () => {
                 {/* Background Glow */}
                 <div className="absolute top-[-50%] left-[20%] w-64 h-64 bg-purple-200 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
 
-                <motion.div 
+                <motion.div
                   initial={{ y: 20, opacity: 0, scale: 0.5 }}
                   animate={{ y: 0, opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3, type: "spring" }}
                   className="text-8xl mb-4 filter drop-shadow-lg inline-block relative z-10"
                 >
-                  {finalResult.imageKeyword === 'sparkle' ? '✨' : 
-                   finalResult.imageKeyword === 'magic-potion' ? '🧪' : '⏳'}
+                  {finalResult.imageKeyword === 'sparkle' ? '✨' :
+                    finalResult.imageKeyword === 'magic-potion' ? '🧪' : '⏳'}
                 </motion.div>
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                 >
                   <h2 className="text-xs font-bold tracking-[0.2em] text-purple-400 uppercase mb-3 bg-white/60 inline-block px-4 py-1.5 rounded-full border border-purple-100 shadow-sm">
-                     妳的魔法能力 
+                    妳的魔法能力
                   </h2>
                   <h1 className="text-4xl font-extrabold text-purple-900 mb-3 tracking-wide">
                     {finalResult.title}
                   </h1>
                   <div className="inline-flex items-center gap-2 text-lg font-bold text-gray-500 bg-slate-50 px-4 py-2 rounded-xl">
-                     魔法屬性： <span className="text-pink-500">{finalResult.magicName}</span>
+                    魔法屬性： <span className="text-pink-500">{finalResult.magicName}</span>
                   </div>
                 </motion.div>
               </div>
@@ -437,29 +442,29 @@ const App: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-4 my-6 opacity-50">
-                   <div className="h-px bg-purple-200 flex-1"></div>
-                   <span className="text-purple-300">✦</span>
-                   <div className="h-px bg-purple-200 flex-1"></div>
+                  <div className="h-px bg-purple-200 flex-1"></div>
+                  <span className="text-purple-300">✦</span>
+                  <div className="h-px bg-purple-200 flex-1"></div>
                 </div>
 
                 {/* Call to Action */}
                 <div className="bg-blue-50/60 p-6 rounded-2xl border-2 border-dashed border-blue-200 text-center relative overflow-hidden group">
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-200 via-purple-200 to-blue-200"></div>
-                  
+
                   <h3 className="text-lg font-bold text-blue-800 mb-2 mt-1">
                     💌 魔法指令：啟動驚喜傳送門
                   </h3>
-                  
+
                   <div className="bg-white/80 p-4 rounded-xl shadow-sm border border-blue-100 text-center text-sm text-slate-600 mb-2 font-medium leading-relaxed">
-                    <p>「請<strong>截圖此畫面</strong>（包含標題與解析）<br/>並立刻傳送給讓妳做這個測驗的<br/><span className="text-blue-500 text-base font-bold">『時間守護者 Minna』</span>」</p>
+                    <p>「請<strong>截圖此畫面</strong>（包含標題與解析）<br />並立刻傳送給讓妳做這個測驗的<br /><span className="text-blue-500 text-base font-bold">『時間守護者 Minna』</span>」</p>
                   </div>
                 </div>
 
-                <button 
+                <button
                   onClick={handleRetake}
                   className="w-full mt-8 py-3.5 rounded-xl border-2 border-purple-200 text-purple-400 hover:text-purple-600 hover:border-purple-400 hover:bg-purple-50 transition-all text-sm font-bold flex items-center justify-center gap-2 group"
                 >
-                  <span className="group-hover:-rotate-180 transition-transform duration-500">🔄</span> 
+                  <span className="group-hover:-rotate-180 transition-transform duration-500">🔄</span>
                   重新測試
                 </button>
               </div>
