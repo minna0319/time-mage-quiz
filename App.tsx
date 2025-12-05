@@ -133,7 +133,9 @@ const App: React.FC = () => {
 
       {/* Logo Area - Global */}
       <div className="absolute top-6 left-6 z-20 pointer-events-none">
-        <img src="/logo.png" alt="Dai Dai Logo" className="w-16 h-16 object-contain drop-shadow-md hover:scale-105 transition-transform pointer-events-auto" />
+        <a href="/" className="pointer-events-auto block transition-transform hover:scale-105">
+          <img src="/logo.png" alt="Dai Dai Logo" className="w-16 h-16 object-contain drop-shadow-md" />
+        </a>
       </div>
 
       <div className="w-full max-w-lg z-10">
