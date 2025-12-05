@@ -132,7 +132,7 @@ const App: React.FC = () => {
       <MagicBackground />
 
       {/* Logo Area - Global */}
-      <div className="absolute top-6 left-6 z-20 pointer-events-none">
+      <div className={`absolute top-6 left-6 z-20 pointer-events-none ${screen === 'quiz' ? 'hidden md:block' : ''}`}>
         <a href="/" className="pointer-events-auto block transition-transform hover:scale-105">
           <img src="/logo.png" alt="Dai Dai Logo" className="w-16 h-16 object-contain drop-shadow-md" />
         </a>
